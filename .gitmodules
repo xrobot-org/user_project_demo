@@ -1,6 +1,3 @@
-[submodule "system/demo_system"]
-	path = system/demo_system
-	url = https://github.com/xrobot-org/demo-system
 [submodule "system/demo_robot"]
 	path = robot/demo_robot
 	url = https://github.com/xrobot-org/demo-robot
