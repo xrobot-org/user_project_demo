@@ -1,0 +1,21 @@
+[submodule "system/demo_system"]
+	path = system/demo_system
+	url = https://github.com/xrobot-org/demo-system
+[submodule "system/demo_robot"]
+	path = robot/demo_robot
+	url = https://github.com/xrobot-org/demo-robot
+[submodule "device/demo_device"]
+	path = device/demo_device
+	url = https://github.com/xrobot-org/demo-device
+[submodule "module/demo_module"]
+	path = module/demo_module
+	url = https://github.com/xrobot-org/demo-module
+[submodule "bsp/demo_board"]
+	path = bsp/demo_board
+	url = https://github.com/xrobot-org/demo-board
+[submodule "component/demo_component"]
+	path = component/demo_component
+	url = https://github.com/xrobot-org/demo-component
+[submodule "XRobot"]
+	path = XRobot
+	url = https://github.com/xrobot-org/XRobot.git

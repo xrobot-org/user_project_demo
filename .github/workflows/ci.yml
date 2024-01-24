@@ -1,0 +1,48 @@
+
+name: build_test
+
+on:
+  push:
+    branches: [ "master" ]
+
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  Build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/xrobot-org/docker-image:main
+      options: --user 0
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: update
+      run: sudo apt install tree -y
+    - name: Set permission
+      run: git config --global --add safe.directory /__w/user_project_demo/user_project_demo
+    - name: Update submodule
+      run: git submodule update --init
+    - name: Update xrobot submodule
+      run: cd XRobot && git submodule update --init
+    - name: copy bsp
+      run: cd XRobot/user/bsp && ln -s ../../../bsp/* ./
+    - name: copy component
+      run: cd XRobot/user/component && ln -s ../../../component/* ./
+    - name: copy device
+      run: cd XRobot/user/device && ln -s ../../../device/* ./
+    - name: copy module
+      run: cd XRobot/user/module && ln -s ../../../module/* ./
+    - name: copy robot
+      run: cd XRobot/user/robot && ln -s ../../../robot/* ./
+    - name: copy system
+      run: cd XRobot/user/system && ln -s ../../../system/* ./
+
+    - name: Build
+      run: cd XRobot && export HOME=/root && bash -c "python project.py build demo_board blink"
